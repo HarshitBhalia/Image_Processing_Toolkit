@@ -1,1 +1,1 @@
-web: gunicorn app:appNew-Item runtime.txt
+web: gunicorn app:app
