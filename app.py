@@ -1,10 +1,3 @@
-# ==============================================
-# 🧠 IMAGE TOOLKIT - optimized, robust Flask app
-# Includes modules: bitwise, color maps, geometry,
-# intensity transforms, hist eq, filters, means,
-# sharpening/edges, feature detection, morphology, LBP, color models
-# ==============================================
-
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import cv2
 import numpy as np
@@ -17,9 +10,7 @@ import os
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
-# ---------------------------
-# Helpers
-# ---------------------------
+# Basics
 def cv2_to_base64(img):
     """Encode OpenCV BGR image (uint8) to PNG base64 string."""
     if img is None:
@@ -86,9 +77,7 @@ def normalize_and_uint8(img):
     scaled = (img - mn) * 255.0 / (mx - mn)
     return np.clip(scaled, 0, 255).astype(np.uint8)
 
-# ---------------------------
-# Implementations of operations (clean & vectorized)
-# ---------------------------
+# Implementation FxNs
 
 # 1) Bitwise - wrappers use match_images_for_binary_op
 def op_bitwise_and(a, b):
@@ -546,13 +535,6 @@ def op_intensity_slice_n(img, n=8):
     return cmap
 
 
-# ---------------------------
-
-# --------------------------------------------------
-# ✅ All your operation functions remain unchanged
-# --------------------------------------------------
-# (Everything from op_bitwise_and() to op_intensity_slice_n() stays EXACTLY as you pasted)
-# --------------------------------------------------
 
 # 🧭 ROUTES
 @app.route('/')
@@ -795,21 +777,6 @@ def process_image():
         else:
             return jsonify({'error': f'Unknown operation: {operation}'}), 400
 
-        # Prepare response - ensure BGR uint8
-        # ==============================
-        # ✅ FULL OPERATION DISPATCH SECTION
-        # ==============================
-        # (Paste your entire if/elif chain exactly from your working code)
-        # Example:
-        # if operation in ['bitwise_and', 'bitwise_or', 'bitwise_xor']:
-        #     ...
-        # elif operation == 'intensity_slice_n':
-        #     result = op_intensity_slice_n(img1, n=n)
-        # else:
-        #     return jsonify({'error': f'Unknown operation: {operation}'}), 400
-        # ==============================
-
-        # ✅ Safe finalization
         if result is None:
             print(f"⚠️ No result produced for operation: {operation}")
             return jsonify({'error': 'Operation produced no output.'}), 500
@@ -831,7 +798,7 @@ def process_image():
 def health():
     return jsonify({'status': 'ok'}), 200
 
-# ✅ Entry Point for Railway
+# Railway PORT
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     print(f"🚀 Starting Flask on port {port}")
