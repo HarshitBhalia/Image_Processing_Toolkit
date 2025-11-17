@@ -1,3 +1,8 @@
+
+
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 body {
@@ -71,7 +76,7 @@ form {
   background: #0074d9;
 }
 
-select, button, .param-controls input {
+select, button {
   width: 85%;
   max-width: 500px;
   padding: 12px;
@@ -84,9 +89,10 @@ select, button, .param-controls input {
 select {
   background-color: #f4f4f4;
   color: #333;
-  height: 250px;
+  height: 260px;
   overflow-y: auto;
   font-size: 0.95rem;
+  padding: 8px;
 }
 
 select optgroup {
@@ -99,31 +105,6 @@ option {
   padding: 6px;
   background: #ffffff;
   color: #222;
-}
-
-.param-controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.param-controls label {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 8px 15px;
-  color: #fff;
-  font-size: 0.9rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.param-controls input {
-  width: 120px;
-  margin-top: 4px;
-  text-align: center;
 }
 
 button {
@@ -212,4 +193,36 @@ footer {
   color: #cce0ff;
   font-size: 0.9rem;
   padding-bottom: 20px;
+}
+
+
+.params-panel {
+  width: 85%;
+  max-width: 500px;
+  margin: 8px 0 2px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.param-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.param-row label {
+  flex: 1 1 60%;
+  color: #cce0ff;
+  font-size: 0.95rem;
+}
+
+.param-row input {
+  flex: 1 1 35%;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.95rem;
 }
